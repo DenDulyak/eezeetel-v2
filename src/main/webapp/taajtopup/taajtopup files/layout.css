@@ -1,0 +1,61 @@
+/*
+GSM International Stylesheet (Layout)
+Copyright (c) 2011, Supermonkey Creative, All rights reserved.
+http://www.supermonkeycreative.co.uk
+version: 1.0.0
+*/
+
+nav li {
+	display: inline;
+	margin-right: 20px;
+}
+input {
+	display: block;
+	margin-bottom: 10px;
+}
+#container {
+	margin: 40px;
+	min-width: 1020px;
+}
+#image-panel {
+	border-color: #283C60;
+}
+#nav-feature {
+	margin-top: 20px;
+}
+#nav-feature li {
+	display: inline-block;
+}
+#news-offers {
+	border-color: #FF750C;
+}
+.divider-horizontal {
+	height: 1px;
+	background-color: #0092D0;
+}
+.float-right {
+	float: right;
+}
+.list-icon {
+	vertical-align: middle;
+	margin-right: 8px;
+}
+.margin-t-b {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.margin-r {
+	margin-right: 20px;
+}
+.padder-r {
+	padding-right: 20px;
+}
+.panel {
+	border: 1px;
+	border-style: solid;
+	padding: 20px;
+}
+.feature-link {
+	border-color: #0092D0;
+	height: 200px;
+}

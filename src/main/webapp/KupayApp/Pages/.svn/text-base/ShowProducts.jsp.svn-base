@@ -1,0 +1,279 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ include file="imports.jsp"%>
+<%@ page import="java.text.DecimalFormat"%>
+<%
+	String strCountryCode = application.getInitParameter("Country");
+	String ksContext = getServletContext().getContextPath(); // returns /CustomerApp
+	String stylesPage = "ShowProductStyles.css";
+	String bagIconFile = "Bag_Icon.JPG";
+
+	try
+	{
+		DatabaseHelper dbHelper = new DatabaseHelper();
+		dbHelper.setCountry(strCountryCode);
+		String strUserID = "";
+
+		if (!session.isNew())
+		{
+			response.addHeader("Pragma", "no-cache");
+			response.addHeader("Expires", "-1");
+			String currentSessionId = request.getSession().getId();
+			
+			strUserID = (String) session.getAttribute("USER_ID");
+
+			if (strUserID == null || strUserID.length() < 0)
+			{
+				session.setAttribute("CurrentTransactionID", 0);
+				strUserID = request.getRemoteUser();
+				session.setAttribute("USER_ID", strUserID);
+
+				String strQuery = "insert into t_user_log (User_Login_ID, Login_Time, Login_Status, SessionID) values ( '" +
+							strUserID + "', now(), 1, '" + currentSessionId + "')";
+				
+				if (!dbHelper.executeQuery(strQuery))
+				{
+					System.out.println("Failed to add to user log (LOGIN) User " + strUserID);
+					session.invalidate();
+				}
+			}
+			else
+			{
+				String previousSessionID = dbHelper.checkForLatestSession(strUserID, currentSessionId);
+
+				if (previousSessionID != null && !previousSessionID.isEmpty())
+				{
+					response.sendRedirect(ksContext + "/Pages/ListTransactions.jsp");
+					session.invalidate();
+					return;
+				}
+			}
+		}
+
+		{
+			if (strUserID != null && !strUserID.isEmpty())
+			{
+				int nGroupID = dbHelper.GetCustomerGroupID(strUserID);
+				if (nGroupID == 4)
+				{
+					stylesPage = "ShowProductStylesKAS.css";
+					bagIconFile = "KAS_Bag_Icon.JPG";
+				}
+				if (nGroupID == 6)
+				{
+					stylesPage = "ShowProductStylesYMT.css";
+					bagIconFile = "YMT_Bag_Icon.JPG";
+				}
+				
+			}
+		}
+	}
+	catch(Exception e)
+	{
+		return;
+	}
+	
+	response.addHeader("Pragma", "no-cache");
+	response.addHeader("Expires", "-1");
+	String userAgent = request.getHeader("User-Agent");
+	boolean bShowTop = true;
+	if (userAgent.compareToIgnoreCase("CallingCardsApp") == 0)
+		bShowTop = true;
+	
+	request.getSession().setAttribute("CurrentTransactionID", 0);
+	String strUserId = (String)request.getRemoteUser();
+	int nCustomerID = 0;
+	int nFeatureID = 0;
+
+	String strScrollMessage = "";
+
+	Session theSession = null;
+	try
+	{
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory(strCountryCode);
+		theSession = sessionFactory.getCurrentSession();
+		theSession.beginTransaction();
+
+		String strQuery = "from TCustomerUsers where User_Login_ID = '" + strUserId + "'"; 
+		Query query = theSession.createQuery(strQuery);
+		List records = query.list();
+		float availableBalance = 0.0f;
+		String strCompanyName="";
+		String struserName="";
+		int nCustomerGroupID = 0;
+		if (records.size() > 0)
+		{
+			TCustomerUsers custUsers = (TCustomerUsers) records.get(0);
+			TMasterCustomerinfo customer = custUsers.getTMasterCustomerinfo();
+			nCustomerGroupID = customer.getTMasterCustomerGroups().getCustomerGroupId();
+			nCustomerID = customer.getCustomerId();
+			nFeatureID = customer.getCustomerFeatureId(); 
+			TMasterUsers users = custUsers.getTMasterUsers();
+			
+			availableBalance = customer.getCustomerBalance();
+			strCompanyName = customer.getCustomerCompanyName();
+			struserName = users.getUserFirstName();
+		}
+		
+		String strQuery1 = "from TMessages where Is_Active = 1 and Target_Group = " + nCustomerGroupID;
+		Query query1 = theSession.createQuery(strQuery1);
+		List messages = query1.list();
+		if (messages != null && messages.size() > 0)
+		{
+			TMessages theMessage = (TMessages) messages.get(0);
+			strScrollMessage = theMessage.getMessage();
+		}
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate"> 
+<link rel="stylesheet" href="<%=ksContext%>/Pages/<%=stylesPage%>" type="text/css"/>
+<script language="javascript" src="<%=ksContext%>/Scripts/Validate.js" type="text/javascript"></script>
+<script language="javascript">
+var theContext = "<%=ksContext%>";
+</script>
+<script language="javascript" src="<%=ksContext%>/Pages/CallingCardsInterface.js" type="text/javascript"></script>
+<script language="javascript" src="<%=ksContext%>/Pages/WorldMobileInterface.js" type="text/javascript"></script>
+<%
+if (nFeatureID == 1)
+{
+%>
+	<script language="javascript" src="<%=ksContext%>/Pages/sim/SimCardsInterface.js" type="text/javascript"></script>
+<%
+}
+%>
+<title>Show Products</title>
+</head>
+<body>
+<form method="post" name="the_form" action="">
+<%
+if (bShowTop)
+{
+%>
+<table id="1" width="100%" class="topmenu">
+<tr>
+<td valign="bottom" class="topmenu_main_item">Welcome <%=strCompanyName%></td>
+<td valign="top" align="right" rowspan="2">
+<a href="<%=ksContext%>/Pages/Logout.jsp" class="topmenu_normal_item">Signout <%=struserName%></a>
+<br>
+<a href="<%=ksContext%>/Pages/ChangePassword.jsp" class="topmenu_normal_item">Change Password</a>
+<br>
+<a href="<%=ksContext%>/Pages/ReportDailyCustomer.jsp" class="topmenu_normal_item">Transaction Report</a>
+<br>
+<a href="<%=ksContext%>/Pages/ListTransactions.jsp" class="topmenu_normal_item">Transactions</a>
+<br>
+<a href="<%=ksContext%>/Pages/CustomerCreditReport.jsp" class="topmenu_normal_item">Credit Report</a>
+</td>
+<td class="topmenu_seperator" valign="top" align="right" rowspan="2">
+<a href="<%=ksContext%>/Pages/RequestCredit.jsp" class="topmenu_normal_item">Request Topup</a>
+<br>
+<a href="<%=ksContext%>/Pages/CustomerInvoice.jsp" class="topmenu_normal_item">Commission Report</a>
+<%
+if (nFeatureID == 1)
+{
+%>
+<br>
+<a href="<%=ksContext%>/Pages/sim/SIMReport.jsp" class="topmenu_normal_item">SIM Commission Report</a>
+<%
+}
+%>
+</td>
+<td class="topmenu_seperator" align="right" rowspan="2">
+<IMG SRC="/Product_Images/Other_Images/<%=bagIconFile%>" width="30" height="31"/>
+<label name="total_items" id="total_items_id" class="topmenu_medium">0 Items</label>
+<br>
+<a href="javascript:checkout_now()" class="topmenu_normal_item">View Bag / Checkout</a>
+</td>
+</tr>
+<tr>
+<%
+	String balance_style = "topmenu_balance_normal";
+	if (availableBalance < 50.0)
+		balance_style = "topmenu_balance_less";
+%>
+<td align="left" valign="top" class="<%=balance_style%>">Balance : £<%=new DecimalFormat("0.00").format((double)availableBalance)%></td>
+</tr>
+<tr>
+</tr>
+</table>
+<%
+}
+%>
+<marquee behavior="scroll" direction="left" width="85%" height="20" scrolldelay="100" class="SCROLLTEXT">
+<%=strScrollMessage%>
+</marquee>
+<table width="100%">
+<tr>
+<%
+{
+%>
+	<td valign="center" "nowrap" align="center"><input type="button" class="supplier_type" name="intl_mob_vochers" value="Mobile Vouchers" onClick="javascript:update_suppliers('10,12', 0)"/></td>
+	<td valign="center" "nowrap" align="center"><input type="button" class="supplier_type" name="intl_cal_card" value="Calling Cards" onClick="javascript:update_suppliers('8,9', 0)"/></td>
+<%
+}
+%>
+
+<%
+{
+%>
+	<td valign="center" "nowrap" align="center">
+		<input type="button" class="supplier_type" name="45" value="World Mobile Topup" onClick="javascript:list_services(<%=TransferToServiceMain.TransferTo_SupplierID%>)"/>
+	</td>
+<%
+}
+%>
+<%
+{
+%>
+	<td valign="center" "nowrap" align="center">
+		<input type="button" class="supplier_type" name="local_mob_vochers" value="Local Mobile Voucher" onClick="javascript:update_suppliers('16', 0)"/>
+	</td>	
+<%
+}
+%>
+<%
+if (nFeatureID == 1)
+{
+
+%>
+	<td valign="center" "nowrap" align="center">
+		<input type="button" class="supplier_type" name="sim_cards" value="SIM Cards" onClick="javascript:update_suppliers('17', 1)"/>
+	</td>	
+<%
+
+}
+%>
+</tr>
+</table>
+<br>
+<br>
+<table width="100%">
+<tr>
+<td valign="top" "nowrap">
+<div id="the_suppliers_list">
+</div>
+</td>
+<td valign="top" align="center">
+<div id="product_list_field">
+</div>
+</td>
+</tr>
+</table>
+</form>
+</body>
+<%
+		theSession.getTransaction().commit();
+	}
+	catch(Exception e)
+	{
+		if (theSession != null)
+			theSession.getTransaction().rollback();
+	}
+%>
+</html>
+
+
+
+

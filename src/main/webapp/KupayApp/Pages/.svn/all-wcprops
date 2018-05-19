@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages
+END
+CheckSelectedProducts.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/CheckSelectedProducts.jsp
+END
+AJAX_GetIATProductList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/AJAX_GetIATProductList.jsp
+END
+RequestCredit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/RequestCredit.jsp
+END
+ShowProductStylesYMT.css
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/ShowProductStylesYMT.css
+END
+Logout.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/Logout.jsp
+END
+ChangePassword.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/ChangePassword.jsp
+END
+CustomerCreditReport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/CustomerCreditReport.jsp
+END
+imports.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/imports.jsp
+END
+CustomerInvoice.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/CustomerInvoice.jsp
+END
+AJAX_DisplayAITInterface.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/AJAX_DisplayAITInterface.jsp
+END
+ShowProductStyles.css
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/ShowProductStyles.css
+END
+PrintTransaction.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/PrintTransaction.jsp
+END
+SessionCheck.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/SessionCheck.jsp
+END
+ListTransactions.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/ListTransactions.jsp
+END
+CompleteMobileTopup.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/CompleteMobileTopup.jsp
+END
+WorldMobileInterface.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/WorldMobileInterface.js
+END
+PrintPreviousTransaction.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/PrintPreviousTransaction.jsp
+END
+AJAX_ListSuppliersByType.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/AJAX_ListSuppliersByType.jsp
+END
+ConfirmTransaction.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/ConfirmTransaction.jsp
+END
+SubmitCreditRequest.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/SubmitCreditRequest.jsp
+END
+ShowProducts.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/EezeeTel/!svn/ver/43/UK/AppCommons/WebContent/Customers/Pages/ShowProducts.jsp
+END
+AJAX_GetCustomerDailySummary.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/AJAX_GetCustomerDailySummary.jsp
+END
+TelephoneCodes.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/TelephoneCodes.jsp
+END
+ReportDailyCustomer.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/ReportDailyCustomer.jsp
+END
+AJAX_ListProductsBySupplier.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/AJAX_ListProductsBySupplier.jsp
+END
+CallingCardsInterface.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/CallingCardsInterface.js
+END
+CancelTransaction.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/CancelTransaction.jsp
+END
+UpdatePassword.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/UpdatePassword.jsp
+END
+ShowProductStylesKAS.css
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/ShowProductStylesKAS.css
+END

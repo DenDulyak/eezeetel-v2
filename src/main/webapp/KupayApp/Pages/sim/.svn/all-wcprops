@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/sim
+END
+CheckSelectedSimProducts.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/EezeeTel/!svn/ver/39/UK/AppCommons/WebContent/Customers/Pages/sim/CheckSelectedSimProducts.jsp
+END
+AttachMobileTopup.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/sim/AttachMobileTopup.jsp
+END
+SIMReport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/sim/SIMReport.jsp
+END
+SIMOrders.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/sim/SIMOrders.jsp
+END
+CompleteSimTransaction.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/sim/CompleteSimTransaction.jsp
+END
+SimCardsInterface.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/EezeeTel/!svn/ver/39/UK/AppCommons/WebContent/Customers/Pages/sim/SimCardsInterface.js
+END
+AJAX_GetSIMCardProductsInfo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/EezeeTel/!svn/ver/5/UK/AppCommons/WebContent/Customers/Pages/sim/AJAX_GetSIMCardProductsInfo.jsp
+END

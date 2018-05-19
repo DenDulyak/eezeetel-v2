@@ -1,0 +1,67 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ include file="imports.jsp"%>
+<%@ include file="SessionCheck.jsp"%>
+
+<%
+String strResponse = "";
+Session theSession = null;
+try
+{
+	String strSupplierID = request.getParameter("supplier_type_id");
+	
+	String strIsSIM = request.getParameter("is_sim");
+	int isSim = 0;
+	if (strIsSIM != null && !strIsSIM.isEmpty())
+		isSim = Integer.parseInt(strIsSIM);
+	if (isSim < 0 || isSim > 1)
+		isSim = 0;
+	
+	SessionFactory sessionFactory = HibernateUtil.getSessionFactory(strCountryCode);
+	theSession = sessionFactory.getCurrentSession();
+	theSession.beginTransaction();
+
+	String strQuery = "from TMasterSupplierinfo where Supplier_ID != " + TransferToServiceMain.TransferTo_SupplierID + 
+				" and Supplier_Active_Status = 1 and Secondary_Supplier = 0 and Supplier_Type_ID in (" + strSupplierID + 
+				") order by Supplier_Name";
+	
+	Query query1 = theSession.createQuery(strQuery);
+	List suppliers = query1.list();
+		
+	String skipUsers[] = {"eeztel", "DEVI", "raghu", "raghu1", "eezee1001", "eezeedemo", "eeztel"};
+	boolean skipSupplier = true;
+	for (int jj = 0; jj < skipUsers.length; jj++)
+	{
+		if (skipUsers[jj].compareToIgnoreCase(request.getRemoteUser()) == 0)
+			skipSupplier = false;
+	}
+
+	for (int nIndex = 0; nIndex < suppliers.size(); nIndex++)
+	{
+		TMasterSupplierinfo oneSupplier = (TMasterSupplierinfo) suppliers.get(nIndex);
+		if (oneSupplier.getSupplierId() == 22 && skipSupplier)
+			continue;
+
+		strResponse += "<input type=\"button\" class=\"supplier\" name=\"" + oneSupplier.getSupplierId() + "\"";
+		strResponse += " value=\"" + oneSupplier.getSupplierName() + "\"";
+		if (isSim == 1)
+			strResponse += " onClick=\"javascript:list_sim_products(" + oneSupplier.getSupplierId() + ")\"/><br><br>";
+		else
+			strResponse += " onClick=\"javascript:list_products(" + oneSupplier.getSupplierId() + ")\"/><br><br>";
+		strResponse += "\n";
+	}
+
+	theSession.getTransaction().commit();
+	
+	response.setContentType("text/html");
+	response.getWriter().println(strResponse);	
+}
+catch(Exception e)
+{
+if (theSession != null)
+	theSession.getTransaction().rollback();
+
+response.setContentType("text/html");
+response.getWriter().println("");	
+}
+%>

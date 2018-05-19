@@ -1,0 +1,163 @@
+<html>
+<head>
+<style type="text/css">
+.button {
+	width: auto;
+}
+form#form-topup-registration {
+	font-family: Arial, sans-serif;
+}
+fieldset {
+	width: auto;
+	margin-bottom: 15px;
+	
+	border-color: #0092D0;
+	border-style: solid;
+	padding: 15px 10px 20px 10px;
+}
+.fieldset-secondary {
+	border-width: 1px;
+	padding: 10px;
+}
+input {
+	display: block;
+	margin-bottom: 10px;
+}
+textarea {
+	display: block;
+	margin-bottom: 10px;
+}
+label {
+	font-size: small;
+	color: #0092D0; 
+}
+legend {
+	color: #FF750C;
+}
+.legend-secondary {
+	font-size: small;
+	color: #0092D0;
+}
+.secondary {
+	font-size: small;
+}
+</style>
+
+<script type="text/javascript" src="Scripts/Validate.js"></script>
+<script language="javascript">
+function validate_and_submit()
+{
+	if (IsNULL(document.the_form.contact_name.value) || !CheckCharacters(document.the_form.contact_name.value, ' '))
+	{
+		alert("Please enter proper contact name (alphabets)");
+		document.the_form.contact_name.focus();
+		return;
+	}
+
+	if (IsNULL(document.the_form.business_name.value) || !AlphaNumerals(document.the_form.business_name.value, ' '))
+	{
+		alert("Please enter proper business name (alphabets and digits only)");
+		document.the_form.business_name.focus();
+		return;
+	}
+	
+	if (IsNULL(document.the_form.referred_by.value) || !CheckCharacters(document.the_form.referred_by.value, ' '))
+	{
+		alert("Please enter who reffered you (alphabets only).  If no one referred you, please put none.");
+		document.the_form.referred_by.focus();
+		return;
+	}
+	
+	if (IsNULL(document.the_form.contact_number.value) || !CheckNumbers(document.the_form.contact_number.value, ' '))
+	{
+		alert("Please enter proper contact phone number (digits only)");
+		document.the_form.contact_number.focus();
+		return;
+	}
+	
+	if (IsNULL(document.the_form.email_id.value) || !CheckSpecialCharacters(document.the_form.email_id.value, '@._-'))
+	{
+		alert("Please enter proper email id");
+		document.the_form.email_id.focus();
+		return;
+	}
+	
+	if (!IsNULL(document.the_form.additional_information.value))
+	{
+		if (document.the_form.additional_information.value.length > 100)
+		{
+			alert("Additional information has lot of characters.  Please limit information to 100 characters.")
+			document.the_form.additional_information.focus();
+			return;
+		}
+	}
+	
+	for (i = 0; i < document.the_form.elements.length; i++)
+		if (document.the_form.elements[i].type == "text" || document.the_form.elements[i].type == "textarea")
+			CheckDatabaseChars(document.the_form.elements[i]);
+	
+	if (!confirm("Thank you for your interest.  A GSM representative will contact you soon.  Please make sure the information is correct and click OK to submit."))
+		return;
+
+	document.the_form.action = "/GSMApp/RegisterNewContact.jsp";
+	document.the_form.submit();
+}
+</script>
+
+</head>
+<body>
+<form name="the_form" method="post">
+	<fieldset>
+		<legend>Contact details</legend>
+			<label for="contact_name">Contact name*</label>
+			<input id="contact_name" name="contact_name" type="text" size="55" maxlength="40" />
+			<label for="business_name">Company name*</label>
+			<input id="business_name" name="business_name" type="text" size="55" maxlength="40" />
+			<label for="referred_by">Referred By*</label>
+			<input id="referred_by" name="referred_by" type="text" size="55" maxlength="40" />					
+			<label for="contact_number">Telephone*</label>
+			<input id="contact_number" name="contact_number" type="text" size="55" maxlength="15" />
+			<label for="email_id">Email*</label>
+			<input id="email_id" name="email_id" type="text"  size="55" maxlength="40"/>
+			<label for="additional_information">Additional Information*</label>
+			<textarea style="resize: none" id="text_1" rows="3" cols="80" name="additional_information" style="width:200px;"></textarea>
+			<!-- <label for="fax">Fax</label>
+			<input id="fax" name="fax" type="text" />-->			
+	</fieldset>
+	<!-- <fieldset>
+		<legend>Company details</legend>
+			<fieldset class="fieldset-secondary">
+				<legend class="legend-secondary">Registered address</legend>
+					<label for="address-street">Street name and number*</label>
+					<input id="address-street" name="address-street" type="text" />
+					<label for="address-town">Town</label>
+					<input id="address-town" name="address-town" type="text" />
+					<label for="address-city">City</label>
+					<input id="address-city" name="address-city" type="text" />
+					<label for="address-county">County</label>
+					<input id="address-county" name="address-county" type="text" />
+					<label for="address-postcode">Postcode*</label>
+					<input id="address-postcode" name="address-postcode" type="text" />
+			</fieldset>
+			<label for="company-registration-number">Company registration number*</label>
+			<input id="company-registration-number" name="company-registration-number" type="text" />
+			<label for="company-vat-number">Company VAT number (if registered)</label>
+			<input id="company-vat-number" name="company-vat-number" type="text" />
+	</fieldset>
+	<fieldset>
+		<legend>Bank details</legend>
+			<label for="account-name">Account name*</label>
+			<input id="account-name" name="account-name" type="text" />
+			<label for="account-number">Account number*</label>
+			<input id="account-number" name="account-number" type="text" />
+			<label for="sort-code">Sort code*</label>
+			<input id="sort-code" name="sort-code" type="text" />
+			<label for="bank">Bank name*</label>
+			<input id="bank" name="bank" type="text" />
+	</fieldset>
+	-->
+	<input class="button" type="button" value="Submit" onClick="validate_and_submit()" />
+	<p class="secondary">Items marked * are required fields</p>
+</form>
+</body>
+</html>

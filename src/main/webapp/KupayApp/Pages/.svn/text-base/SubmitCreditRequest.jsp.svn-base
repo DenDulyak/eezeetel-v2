@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ include file="imports.jsp"%>
+<%@ page import="java.text.DecimalFormat"%>
+<%@ include file="SessionCheck.jsp"%>
+
+<%
+response.addHeader("Pragma", "no-cache");
+response.addHeader("Expires", "-1");
+
+String strRequestAmount = request.getParameter("request_amount");
+String strAmountDeposited = request.getParameter("amount_deposited");
+String strPaymentType = request.getParameter("payment_type");
+String strBankName = request.getParameter("bank_name");
+String strRequestDetails = request.getParameter("request_details");
+String strTheYear = request.getParameter("the_year");
+String strTheMonth = request.getParameter("the_month");
+String strTheDay = request.getParameter("the_day");
+String strTheHour = request.getParameter("the_hour");
+
+String requestUserID = request.getRemoteUser();
+String strCustomerID = request.getParameter("customer_id");
+
+int nCustomerID = 0;
+if (strCustomerID != null)
+	nCustomerID = Integer.parseInt(strCustomerID);
+int nAmountDeposited = 0;
+float fRequestAmount = 0.0f;
+if (strRequestAmount != null && !strRequestAmount.isEmpty())
+	fRequestAmount = Float.parseFloat(strRequestAmount);
+if (strAmountDeposited != null && !strAmountDeposited.isEmpty())
+	nAmountDeposited = Integer.parseInt(strAmountDeposited);
+
+int nPaymentType = 0;
+int nBankId = 1;
+String strPayDate = null;
+
+if (nAmountDeposited == 1)
+{
+	if (strPaymentType != null && !strPaymentType.isEmpty())
+		nPaymentType = Integer.parseInt(strPaymentType);
+
+	if (strBankName != null && !strBankName.isEmpty())
+		nBankId = Integer.parseInt(strBankName);
+
+	Calendar cal = Calendar.getInstance();
+	cal.set(Calendar.YEAR, Integer.parseInt(strTheYear));
+	cal.set(Calendar.MONTH, Integer.parseInt(strTheMonth));
+	cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(strTheDay));
+	cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(strTheHour));
+	cal.set(Calendar.MINUTE, 0);
+	cal.set(Calendar.SECOND, 0);
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    strPayDate = "'" + sdf.format(cal.getTime()) + "'";
+}
+
+String strQuery = "insert into t_credit_requests (Request_Type, Customer_ID, Request_Date, Request_Amount," + 
+					" Amount_Already_Paid, Payment_Type, Bank_ID, Payment_Date, Requested_By, Request_Details, " + 
+					" Request_Status) " +
+					" values (1, " + nCustomerID + ", now(), " + fRequestAmount + ", " + nAmountDeposited + ", " +
+					  nPaymentType + ", " + nBankId	+ ", " + strPayDate + ", '" + 
+					  request.getRemoteUser() + "', '" + strRequestDetails + "', 1)";
+
+DatabaseHelper dbHelper = new DatabaseHelper();
+dbHelper.setCountry(strCountryCode);
+if (dbHelper.executeQuery(strQuery))
+	response.sendRedirect(ksContext + "/Pages/RequestCredit.jsp");
+else
+	response.getWriter().println("Failed to submit credit request. Please try again");
+%>

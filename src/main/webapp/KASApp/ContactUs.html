@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Generator" content="Serif WebPlus X5">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>Welcome to KAS Global | Contact Us</title>
+<script type="text/javascript" src="../Scripts/Validate.js"></script>
+<script language="javascript">
+function validate_and_submit()
+{
+	if (IsNULL(document.the_form.contact_name.value) || !CheckCharacters(document.the_form.contact_name.value, ' '))
+	{
+		alert("Please enter proper contact name (alphabets)");
+		document.the_form.contact_name.focus();
+		return;
+	}
+
+	if (IsNULL(document.the_form.business_name.value) || !AlphaNumerals(document.the_form.business_name.value, ' '))
+	{
+		alert("Please enter proper business name (alphabets and digits only)");
+		document.the_form.business_name.focus();
+		return;
+	}
+	
+	if (IsNULL(document.the_form.referred_by.value) || !CheckCharacters(document.the_form.referred_by.value, ' '))
+	{
+		alert("Please enter who reffered you (alphabets only).  If no one referred you, please put none.");
+		document.the_form.referred_by.focus();
+		return;
+	}
+	
+	if (IsNULL(document.the_form.contact_number.value) || !CheckNumbers(document.the_form.contact_number.value, ' '))
+	{
+		alert("Please enter proper contact phone number (digits only)");
+		document.the_form.contact_number.focus();
+		return;
+	}
+	
+	if (IsNULL(document.the_form.email_id.value) || !CheckSpecialCharacters(document.the_form.email_id.value, '@._-'))
+	{
+		alert("Please enter proper email id");
+		document.the_form.email_id.focus();
+		return;
+	}
+	
+	if (!IsNULL(document.the_form.additional_information.value))
+	{
+		if (document.the_form.additional_information.value.length > 100)
+		{
+			alert("Additional information has lot of characters.  Please limit information to 100 characters.")
+			document.the_form.additional_information.focus();
+			return;
+		}
+	}
+	
+	for (i = 0; i < document.the_form.elements.length; i++)
+		if (document.the_form.elements[i].type == "text" || document.the_form.elements[i].type == "textarea")
+			CheckDatabaseChars(document.the_form.elements[i]);
+	
+	if (!confirm("Thank you for your interest.  A KAS Global representative will contact you soon.  Please make sure the information is correct and click OK to submit."))
+		return;
+
+	document.the_form.action = "/KASApp/Content/RegisterNewContact.jsp";
+	document.the_form.submit();
+}
+</script>
+<style type="text/css">
+body {margin: 0px; padding: 0px;}
+.Body-P
+{
+    margin:0.0px 0.0px 0.0px 0.0px; text-align:right; font-weight:400;
+}
+.Body-C
+{
+    font-family:"Georgia", serif; color:#1f5b8b; font-size:13.0px; line-height:1.23em;
+}
+.Body-C-C0
+{
+    font-family:"Georgia", serif; color:#ffffff; font-size:13.0px; line-height:1.23em;
+}
+.Body-C-C1
+{
+    font-family:"Georgia", serif; color:#ffffff; font-size:11.0px; line-height:1.27em;
+}
+.Body-C-C2
+{
+    font-family:"Georgia", serif; font-size:13.0px; line-height:1.23em;
+}
+.Normal-C
+{
+    font-family:"Georgia", serif; font-size:13.0px; line-height:1.23em;
+}
+.Normal-C-C0
+{
+    font-family:"Georgia", serif; font-size:16.0px; line-height:1.13em;
+}
+.Heading-1-C
+{
+    font-family:"Baskerville Old Face", serif; font-weight:700; color:#c03321; font-size:19.0px; line-height:1.16em;
+}
+.Heading-1-C-C0
+{
+    font-family:"Baskerville Old Face", serif; font-weight:700; color:#ffffff; font-size:24.0px; line-height:1.13em;
+}
+.Button1,.Button1:link,.Button1:visited{background-position:0px 0px;text-decoration:none;display:block;position:absolute;background-image:url(wpimages/wp35712dda_06.png);}
+.Button1:focus{outline-style:none;}
+.Button1:hover{background-position:0px -96px;}
+.Button1:active{background-position:0px -48px;}
+.Button1 span,.Button1:link span,.Button1:visited span{color:#ffffff;font-family:Georgia,serif;font-weight:normal;text-decoration:none;text-align:center;text-transform:none;font-style:normal;left:2px;top:10px;width:117px;height:17px;font-size:13px;display:block;position:absolute;cursor:pointer;}
+.Button1:hover span{color:#000000;}
+.Button1:active span{color:#000000;}
+</style>
+<script type="text/javascript" src="wpscripts/jspngfix.js"></script>
+<link rel="stylesheet" href="wpscripts/wpstyles.css" type="text/css">
+<script type="text/javascript">var blankSrc = "wpscripts/blank.gif";
+</script>
+</head>
+
+<body text="#000000" style="background-color:#16bdec; text-align:center; height:999px;">
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:1000px;height:999px;">
+<div id="txt_93" style="position:absolute;left:38px;top:935px;width:925px;height:64px; background-color:#1f5b8b;overflow:hidden;">
+<p class="Wp-Body-P"><span class="Body-C"><br></span></p>
+</div>
+<div id="txt_18" style="position:absolute;left:50px;top:945px;width:902px;height:47px;overflow:hidden;">
+<p class="Wp-Body-P"><span class="Body-C-C0">Copyright 2012 © KAS Global Limited &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Terms
+    and conditions | Privacy policy<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p class="Body-P"><span class="Body-C-C1">Registered in England and Wales Reg no: 07829639</span></p>
+</div>
+<img src="wpimages/wp1ea23245_06.png" width="925" height="273" border="0" id="pic_15" alt="" onload="OnLoadPngFix()" style="position:absolute;left:37px;top:0px;">
+<div id="nav_413" style="position:absolute;left:303px;top:219px;width:667px;height:64px;">
+    <a href="index.jsp" id="nav_413_B1" class="Button1" style="display:block;position:absolute;left:28px;top:5px;width:122px;height:48px;"><span>Home</span></a>
+    <a href="about.html" id="nav_413_B2" class="Button1" style="display:block;position:absolute;left:150px;top:5px;width:122px;height:48px;"><span>About Us</span></a>
+    <a href="howdoesitwork.html" id="nav_413_B3" class="Button1" style="display:block;position:absolute;left:272px;top:5px;width:122px;height:48px;"><span>How does it work</span></a>
+    <a href="products.html" id="nav_413_B4" class="Button1" style="display:block;position:absolute;left:394px;top:5px;width:122px;height:48px;"><span>Products</span></a>
+    <a href="ContactUs.html" id="nav_413_B5" class="Button1" style="display:block;position:absolute;left:516px;top:5px;width:122px;height:48px;"><span>Contact Us</span></a>
+</div>
+<div id="txt_94" style="position:absolute;left:38px;top:916px;width:925px;height:18px; background-color:#f3a41a;overflow:hidden;">
+<p class="Wp-Body-P"><span class="Body-C-C2"><br></span></p>
+</div>
+<div id="txt_91" style="position:absolute; left:37px; top:271px; width:925px; height:644px; background-color:#ffffff; overflow:hidden;">
+<p class="Wp-Body-P"><span class="Body-C-C2"><br></span></p>
+</div>
+<div id="txt_19" style="position:absolute;left:203px;top:403px;width:310px;height:131px;overflow:hidden;">
+<p class="Wp-Normal-P"><span class="Normal-C">KAS GLOBAL LIMITED</span></p>
+<p class="Wp-Normal-P"><span class="Normal-C">12 BEDFORD ROAD</span></p>
+<p class="Wp-Normal-P"><span class="Normal-C">WALTHAMSTOW</span></p>
+<p class="Wp-Normal-P"><span class="Normal-C">LONDON</span></p>
+<p class="Wp-Normal-P"><span class="Normal-C">GREATER LONDON</span></p>
+<p class="Wp-Normal-P"><span class="Normal-C">UNITED KINGDOM</span></p>
+<p class="Wp-Normal-P"><span class="Normal-C">E17 4PX</span></p>
+<p class="Wp-Body-P"><span class="Body-C-C2"><br></span></p>
+</div>
+<img src="wpimages/wp8c6826e9_06.png" width="423" height="523" border="0" id="qs_10" alt="" onload="OnLoadPngFix()" style="position:absolute;left:540px;top:377px;">
+<img src="wpimages/wp384ef24f_06.png" width="424" height="1" border="0" id="pcrv_580" alt="" onload="OnLoadPngFix()" style="position:absolute;left:55px;top:348px;">
+<img src="wpimages/wp8a212d2a_06.png" width="134" height="36" border="0" id="txt_38" title="" alt="Address:" onload="OnLoadPngFix()" style="position:absolute;left:59px;top:402px;">
+<img src="wpimages/wp384ef24f_06.png" width="424" height="1" border="0" id="pcrv_581" alt="" onload="OnLoadPngFix()" style="position:absolute;left:66px;top:569px;">
+<img src="wpimages/wp61d8fbc4_06.png" width="138" height="36" border="0" id="txt_39" title="" alt="Tel:" onload="OnLoadPngFix()" style="position:absolute;left:61px;top:604px;">
+<div id="txt_43" style="position:absolute;left:213px;top:603px;width:279px;height:36px;overflow:hidden;">
+<p class="Wp-Normal-P"><span class="Normal-C-C0">+ (44) 0 203 6171 279</span></p>
+<p class="Wp-Body-P"><span class="Body-C-C2"><br></span></p>
+</div>
+<img src="wpimages/wp384ef24f_06.png" width="424" height="1" border="0" id="pcrv_582" alt="" onload="OnLoadPngFix()" style="position:absolute;left:63px;top:680px;">
+<img src="wpimages/wpbf977f5a_06.png" width="134" height="36" border="0" id="txt_40" title="" alt="Mobile:" onload="OnLoadPngFix()" style="position:absolute;left:62px;top:723px;">
+<div id="txt_44" style="position:absolute;left:214px;top:722px;width:279px;height:36px;overflow:hidden;">
+<p class="Wp-Normal-P"><span class="Normal-C-C0">+ (44) 0 7931 772 568</span></p>
+<p class="Wp-Body-P"><span class="Body-C-C2"><br></span></p>
+</div>
+<img src="wpimages/wp384ef24f_06.png" width="424" height="1" border="0" id="pcrv_583" alt="" onload="OnLoadPngFix()" style="position:absolute;left:60px;top:793px;">
+<img src="wpimages/wp384ef24f_06.png" width="424" height="1" border="0" id="pcrv_584" alt="" onload="OnLoadPngFix()" style="position:absolute;left:58px;top:891px;">
+<img src="wpimages/wped8a87db_06.png" width="134" height="36" border="0" id="txt_42" title="" alt="Email:" onload="OnLoadPngFix()" style="position:absolute;left:57px;top:821px;">
+<div id="txt_46" style="position:absolute;left:209px;top:822px;width:279px;height:36px;overflow:hidden;">
+<p class="Wp-Normal-P"><span class="Normal-C-C0">contact@kasglobal.co.uk</span></p>
+<p class="Wp-Body-P"><span class="Body-C-C2"><br></span></p>
+</div>
+<div class="Wp-Emphasis-C" id="txt_165" style="position:absolute; left:563px; top:397px; width:293px; height:420px; overflow:hidden;">
+<div id='contact_form_errorloc' class='err'></div>
+<form method="POST" name="the_form" action=""> 
+<p>
+<label for='contact_name'>Name: </label><br>
+<input type="text" name="contact_name" value="">
+</p>
+<p>
+<label for='business_name'>Business: </label><br>
+<input type="text" name="business_name" value="">
+</p>
+<p>
+<label for='referred_by'>Referred By: </label><br>
+<input type="text" name="referred_by" value="">
+</p>
+<p>
+<label for='contact_number'>Telephone: </label><br>
+<input type="text" name="contact_number" value="">
+</p>
+<p>
+<label for='email_id'>Email: </label><br>
+<input type="text" name="email_id" value="">
+</p>
+<p>
+<label for='additional_information'>Message:</label> <br>
+<textarea name="additional_information" rows=2 cols=30></textarea>
+</p>
+<input type="button" value="Submit" name='submit_button' onClick="validate_and_submit()">
+</form>
+</div>
+<div id="txt_113_C01" style="position:absolute;left:540px;top:335px;width:279px;height:25px;">
+    <div class="Wp-Heading-1-P">
+    <span class="Heading-1-C">Contact form</span></div>
+</div>
+<div id="txt_106" style="position:absolute;left:52px;top:290px;width:335px;height:32px; background-color:#ba1f1f;overflow:hidden;padding:0px -1px 0px 1px;">
+<p class="Wp-Body-P"><span class="Body-C-C2"><br></span></p>
+</div>
+<div id="txt_95_C01" style="position:absolute;left:55px;top:290px;width:279px;height:39px;">
+    <div class="Wp-Heading-1-P">
+    <span class="Heading-1-C-C0">Contact us</span></div>
+</div>
+<script type="text/javascript" src="wpscripts/jsValidation.js"></script>
+</div>
+</body>
+</html>

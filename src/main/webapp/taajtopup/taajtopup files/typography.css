@@ -1,0 +1,70 @@
+/*
+GSM International Stylesheet (Typography)
+Copyright (c) 2011, Supermonkey Creative, All rights reserved.
+http://www.supermonkeycreative.co.uk
+version: 1.0.0
+*/
+
+a, a:active, a:visited {
+	color: #0092D0;
+}
+a:hover { 
+	color: #54A9DA;
+}
+body {
+	font-size: 108%;
+	line-height: 138.5%;
+	color: #283C60;
+}
+em {
+	color: #0092D0;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	margin-bottom: 0.5em;
+}
+h1 {
+	font-size: 146.5%;
+	color: #0aee70;
+}
+h2 {
+	color: #020100;
+}
+nav li a {
+	color: #283C60;
+	text-decoration: none;
+}
+p {
+	margin-bottom: 0.5em;
+}
+ul {
+	list-style:none;
+	margin: 0;
+}
+#nav-feature a {
+	color: #283C60;
+	text-decoration: none;
+}
+#nav-feature a:hover {
+	color: #54A9DA;
+	text-decoration: none;
+}
+.feature-link h2 {
+	font-size: 146.5%;
+	color: #0092D0;
+}
+.feature-text {
+	font-size: 146.5%;
+	color: #FF750C;
+}
+.inconspicuous {
+	color: #666666;
+}
+.secondary-copy {
+	font-size: 85%;
+	line-height: 123.1%;
+}
+.tertiary-copy {
+	font-size: 77%;
+	line-height: 116%;
+}

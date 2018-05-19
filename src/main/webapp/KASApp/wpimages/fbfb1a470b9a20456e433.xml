@@ -1,0 +1,43 @@
+﻿<?xml version="1.0"?>
+<myroot>
+<Slides>
+<slideNode jpegURL="b123676c274a.jpg" thumbURL="b123676c274at.jpg" jpegWidth="288" jpegHeight="289"></slideNode>
+</Slides>
+<setup>
+	<infoNode 
+		sliderposxshift="false"
+		of=" of "
+		sec="sec"
+		PhotoWMax="800"
+		PhotoHMax="600"
+		captionx="400" 
+		captiony="505" 
+		mymusictrack = ""  
+		fontcolor="0x000000"
+		sliderposx = "375"
+		sliderposy = "550"
+		slideimagein="false"
+		sliderdoc = "false"
+		slidervis="true" 
+		verticalthumbs ="false" 
+		slideinimagenudge="false" 
+		thumbxLoc= "0"  
+		photoYLoc="-1" 
+		photoXLoc="0" 
+		thumbyLoc= "570" 
+		popslide="true" 
+		thumbsvis= "false" 
+		thumbsize= "50" 
+		thumbgap= "5"  
+		thumbygap= "0" 
+		thumbblocklength="1" 
+		blur="0"  
+		AutoHideControls = "true"
+		reflection="false" 
+		Autoplay="true"
+		Sliderdefault="5"
+		>
+	</infoNode>
+</setup>
+</myroot>
+ 

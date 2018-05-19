@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+
+	<table-filter match-name="t_agent_commission" />
+	<table-filter match-name="t_batch_information" />
+	<table-filter match-name="t_card_info" />
+	<table-filter match-name="t_customer_commission" />
+	<table-filter match-name="t_customer_deals" />
+	<table-filter match-name="t_customer_favorates" />
+	<table-filter match-name="t_customer_users" />
+	<table-filter match-name="t_master_countries" />
+	<table-filter match-name="t_master_customer_credit" />
+	<table-filter match-name="t_master_customerinfo" />
+	<table-filter match-name="t_master_customertype" />
+	<table-filter match-name="t_master_productinfo" />
+	<table-filter match-name="t_master_productsaleinfo" />
+	<table-filter match-name="t_master_producttype" />
+	<table-filter match-name="t_master_supplierinfo" />
+	<table-filter match-name="t_master_suppliertype" />
+	<table-filter match-name="t_master_user_type_and_privilege" />
+	<table-filter match-name="t_master_users" />
+	<table-filter match-name="t_transaction_balance" />
+	<table-filter match-name="t_transactions" />
+	<table-filter match-name="t_user_log" />
+	<table-filter match-name="t_master_customer_groups"></table-filter>
+	<table-filter match-name="t_credit_requests"></table-filter>
+	<table-filter match-name="t_master_banks"></table-filter>
+	<table-filter match-name="t_new_contacts"></table-filter>
+	<table-filter match-name="t_transferto_transactions"></table-filter>
+	<table-filter match-name="t_customer_group_commissions"></table-filter>
+	<table-filter match-name="t_master_customer_group_credit"></table-filter>
+	<table-filter match-name="t_report_customer_profit"></table-filter>
+	<table-filter match-name="t_report_eezeetel_profit"></table-filter>
+	<table-filter match-name="t_report_group_profit"></table-filter>
+	<table-filter match-name="t_messages"></table-filter>
+	<table-filter match-name="t_report_customer_credit"></table-filter>
+	<table-filter match-name="t_response_3r"></table-filter>
+	<table-filter match-name="t_sim_cards_info"></table-filter>
+	<table-filter match-name="t_sim_transactions"></table-filter>
+	<table-filter match-name="t_sim_card_mobile_vouchers_mapping"></table-filter>
+	<table-filter match-name="t_master_product_category"></table-filter>
+	<table-filter match-name="t_vat_rates"></table-filter>
+	<table-filter match-name="t_master_b2c_users"></table-filter>
+	<table-filter match-name="t_revoked_transactions"></table-filter>
+	<table-filter match-name="t_master_expenses"></table-filter>
+	<table-filter match-name="t_expense_types"></table-filter>
+	<table-filter match-name="t_b2c_transactions"></table-filter>
+	<table-filter match-name="t_b2c_customer_credit"></table-filter>
+	<table-filter match-name="t_ding_transactions"></table-filter>
+
+</hibernate-reverse-engineering>

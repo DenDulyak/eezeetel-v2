@@ -1,0 +1,205 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ include file="imports.jsp"%>
+<%@ include file="SessionCheck.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Customer Day Transaction</title>
+<link rel="stylesheet" href="<%=ksContext%>/Scripts/Print.css" type="text/css" media="print" />
+<style type="text/css">
+table {font-weight:bold}
+</style>
+<script language="javascript" src="<%=ksContext%>/Scripts/Validate.js"></script>
+<script language="javascript">
+
+function update_customer_daily_transaction(userID)
+{
+	if (IsNULL(userID))
+		userID = document.the_form.user_id.value;
+	if (IsNULL(userID)) return;
+
+	var theDay = document.the_form.the_day.value;
+	if (IsNULL(theDay))
+	{
+		var now = new Date();
+		theDay = now.getYear() + "-" + (now.getMonth()+1) +  "-" + now.getDate();
+	}
+
+	if (IsNULL(theDay)) return;
+
+	var httpObj = getHttpObject();
+	if (httpObj == null)
+	{
+		alert("Cannot get cusomter daily transaction");
+		return;
+	}
+
+	var element = document.getElementById('customer_daily_transaction');
+	if (element != null)
+		element.innerHTML = "";	
+
+	httpObj.onreadystatechange=function()
+	{
+		if(httpObj.readyState==4)
+		{
+			if (element != null)
+				element.innerHTML = httpObj.responseText;
+		}
+	}
+
+	var url = "<%=ksContext%>/Pages/AJAX_GetCustomerDailySummary.jsp?the_user_id=" + userID + "&the_day=" + theDay;
+	httpObj.open("POST", url, true);
+	httpObj.send(null);
+}
+function PrintPage()
+{
+	window.print();
+}
+
+function winUnload()
+{
+	var httpObj = getHttpObject();
+	if (httpObj == null)
+	{
+		alert("Can not get product information");
+		return;
+	}
+
+	var url = "<%=ksContext%>/Pages/Logout.jsp";
+	httpObj.open("POST",url,true);
+	httpObj.send(null);	
+}
+window.onunload = function()
+{
+//	winUnload();
+}
+
+</script>
+</head>
+<%
+	String strUserId = (String)request.getRemoteUser();
+%>
+<body onLoad="update_customer_daily_transaction('<%=strUserId%>')">
+<%	
+	Session theSession = null;
+	try
+	{
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory(strCountryCode);
+		theSession = sessionFactory.getCurrentSession();
+		theSession.beginTransaction();
+		
+		int nCustomer_ID = 0;
+		String strUserFirstName = "";
+		String strUserLastName = "";
+		
+		String strQuery = "from TCustomerUsers where User_Login_ID = '" + strUserId + "'"; 
+		Query query = theSession.createQuery(strQuery);
+		List records = query.list();
+		if (records.size() > 0)
+		{
+			TCustomerUsers custUsers = (TCustomerUsers) records.get(0);
+			TMasterCustomerinfo customer = custUsers.getTMasterCustomerinfo();
+			TMasterUsers users = custUsers.getTMasterUsers();
+			TMasterUserTypeAndPrivilege privilege = users.getTMasterUserTypeAndPrivilege();
+			if (users.getUserActiveStatus() == 1)
+			{
+				nCustomer_ID = customer.getCustomerId();
+				strUserFirstName = users.getUserFirstName();
+				strUserLastName = users.getUserLastName();
+			}
+		}
+		
+		if (request.isUserInRole("Customer_Supervisor"))
+		{
+			strQuery = "from TCustomerUsers where Customer_ID = " + nCustomer_ID;
+			
+			query = theSession.createQuery(strQuery);
+			records = query.list();
+		}
+%>		
+<form name="the_form" method="post" action="">
+<table>
+	<tr>
+		<td align="left">
+			User:
+		</td>
+		<td align="left">
+			<select name="user_id" onChange="update_customer_daily_transaction()">
+			<%
+			if (request.isUserInRole("Customer_Supervisor"))
+			{
+			%>
+				<option value="All">All</option>
+			<%
+				for (int i = 0; i < records.size(); i++)
+				{
+					TCustomerUsers custUsers = (TCustomerUsers) records.get(i);
+					TMasterUsers users = custUsers.getTMasterUsers();
+					TMasterUserTypeAndPrivilege privilege = users.getTMasterUserTypeAndPrivilege();
+					if (users.getUserActiveStatus() != 1) continue;
+					if (privilege.getUserTypeAndPrivilegeId() != 7 && privilege.getUserTypeAndPrivilegeId() != 8) continue;
+					String strSelected = "";
+					if (users.getUserLoginId().compareToIgnoreCase(strUserId) == 0)
+						strSelected = "selected";
+			%>
+					<option value="<%=users.getUserLoginId()%>"<%=strSelected%>><%=users.getUserFirstName()%>, <%=users.getUserLastName()%></option>
+			<%
+				}
+			}
+			else
+			{
+			%>
+				<option value="<%=strUserId%>"><%=strUserFirstName%>, <%=strUserLastName%></option>
+			<%
+			}
+			%>
+			</select>
+		</td>
+		<td>
+			Day:
+		</td>
+		<td align="left">
+			<select name="the_day" onChange="update_customer_daily_transaction()">
+			<%
+				Calendar cal = Calendar.getInstance();
+				
+				for (int i = 0; i < 30; i++)
+				{
+					String theDay = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DAY_OF_MONTH);
+				
+					String strSelected = "";
+					if (i == 0)
+						strSelected = "selected";
+			%>
+					<option value="<%=theDay%>"<%=strSelected%>><%=theDay%></option>
+			<%
+					cal.add(Calendar.DAY_OF_MONTH, -1);
+				}
+			%>
+			</select>
+		</td>		
+		<td>
+		</td>		
+		<td><div id="nav"><a href="<%=ksContext%>/Pages/ShowProducts.jsp"> Show Products </a></div></td>
+	</tr>
+</table>
+<br>
+<div id="customer_daily_transaction"></div>
+<div id="nav">
+	<input type="button" name="print_button" value="Print" onClick="javascript:PrintPage()"/>
+</div>
+</form>
+</body>
+<%
+		theSession.getTransaction().commit();
+	}
+	catch(Exception e)
+	{
+		if (theSession != null)
+			theSession.getTransaction().rollback();
+		e.printStackTrace();
+	}
+%>
+</html>

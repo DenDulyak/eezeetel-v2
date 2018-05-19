@@ -1,0 +1,132 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ include file="imports.jsp"%>
+<%@ include file="SessionCheck.jsp"%>
+
+<html>
+<body>
+<a href="<%=ksContext%>/Pages/ShowProducts.jsp">Show Products</a>	
+<br>
+<br>
+
+<%
+	Session theSession= null;
+
+	try
+	{
+		int nCustomerID = 0;
+		String strQuery = "from TCustomerUsers where User_Login_ID = '" + request.getRemoteUser() + "'";
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory(strCountryCode);
+		theSession = sessionFactory.getCurrentSession();
+		theSession.beginTransaction();
+		Query query = theSession.createQuery(strQuery);
+		
+		List customer = query.list();
+		if (customer.size() > 0)
+		{
+			TCustomerUsers custUsers = (TCustomerUsers) customer.get(0);
+			TMasterCustomerinfo theCustomer = custUsers.getTMasterCustomerinfo();
+			TMasterUsers theUser = custUsers.getTMasterUsers();
+			if (theCustomer.getActiveStatus() == 1 && theUser.getUserActiveStatus() == 1)
+				nCustomerID = theCustomer.getCustomerId();
+		}
+
+		if (nCustomerID == 0)
+		{
+			theSession.getTransaction().commit();
+			response.setContentType("text/plain");
+			response.getWriter().println("");
+			return;	
+		}
+		
+		strQuery = "from TMasterCustomerCredit";
+		if (nCustomerID > 0)
+			strQuery += " where Entered_Time >= '2012-01-01' and Customer_ID = " + nCustomerID + " order by Credit_or_Debit desc, Payment_Date desc, Entered_Time desc";
+		query = theSession.createQuery(strQuery);
+		List records = query.list();
+	
+		String strResult = 	"<table border=\"1\" width=\"100%\"> <tr bgcolor=\"#99CCFF\">" +
+							"<td> <h5>Credit ID</h5> </td><td> <h5>Customer</h5> </td> <td> <h5>Payment Type</h5> </td>" +
+							"<td> <h5>Payment Details</h5> </td><td> <h5>Payment Amount</h5> </td>" +
+							"<td> <h5>Payment Received Date</h5> </td>" +
+							"<td> <h5>Topup Date</h5> </td>" +
+							"<td> <h5>Credit OR Debit</h5> </td></tr>";
+		
+		float fOutstandingBalance = 0.0f;
+		boolean bDone = false;
+
+		for (int nIndex = 0; nIndex < records.size(); nIndex++)
+		{
+			TMasterCustomerCredit custCredit = (TMasterCustomerCredit) records.get(nIndex);
+			TMasterCustomerinfo custInfo = (TMasterCustomerinfo) custCredit.getTMasterCustomerinfo();
+			TMasterUsers userCollectedBy = custCredit.getTMasterUsersByCollectedBy();
+			TMasterUsers userEnteredBy = custCredit.getTMasterUsersByEnteredBy();
+			
+			String strPaymentType = "Not Paid";
+			switch(custCredit.getPaymentType())
+			{
+				case 1: strPaymentType = "Cash"; break;
+				case 2: strPaymentType = "Cheque"; break;
+				case 3: strPaymentType = "Bank Deposit"; break;
+				case 4: strPaymentType = "Funds Transfer"; break;
+				case 5: strPaymentType = "Debit/Credit Card"; break;
+			}
+			
+			String strPaymentDate = "Not Paid/Credited Yet";
+			
+			Date dtPayment = custCredit.getPaymentDate();
+			if (dtPayment != null)
+				strPaymentDate = dtPayment.toString();
+			
+			String strCreditOrDebit = "DEBIT";
+			String strBgColor = "Red";
+			if (custCredit.getCreditOrDebit() == 1)
+			{
+				strCreditOrDebit = "Credit";
+				strBgColor = "";
+				fOutstandingBalance += custCredit.getPaymentAmount();
+			}
+			else
+				fOutstandingBalance -= custCredit.getPaymentAmount();
+			
+			String strPaymentDetails = custCredit.getPaymentDetails();
+			if (strPaymentDetails == null || strPaymentDetails.isEmpty())
+				strPaymentDetails = "";
+			
+			strResult += ("<tr bgcolor=\"" + strBgColor + "\">" +
+						"<td align=\"left\">" +  custCredit.getCreditId() + "</td>" +
+						"<td align=\"left\">" +  custInfo.getCustomerCompanyName() + "</td>" +
+						"<td align=\"left\">" +  strPaymentType + "</td>" + 
+						"<td align=\"left\">" +  strPaymentDetails + "</td>" +
+						"<td align=\"left\">" +  custCredit.getPaymentAmount() + "</td>" +
+						"<td align=\"left\">" +  strPaymentDate + "</td>" +
+						"<td align=\"left\">" +  custCredit.getEnteredTime() + "</td>" +
+						"<td align=\"left\">" +  strCreditOrDebit + "</td>" + "</tr>");
+		}
+		
+		DecimalFormat df = new DecimalFormat("0.00");
+		
+		//strResult += "<tr><td></td><td></td><td>Consolidated Amount</td><td>" + df.format(fOutstandingBalance) + "</td></tr>";
+		strResult += "</table>";
+		//response.setContentType("text/html");
+		//response.getWriter().println(strResult);
+%>
+		<%=strResult%>
+<%
+	}
+	catch(Exception e)
+	{
+		theSession.getTransaction().rollback();
+		String strResult = "No records found";
+		//response.setContentType("text/plain");
+		//response.getWriter().println(strResult);
+%>
+		<%=strResult%>
+<%		
+	}
+%>
+
+	<br>
+	<a href="<%=ksContext%>/Pages/ShowProducts.jsp">Show Products</a>
+	</body>
+	</html>

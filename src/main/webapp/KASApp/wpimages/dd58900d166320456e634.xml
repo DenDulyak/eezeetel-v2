@@ -1,0 +1,48 @@
+﻿<?xml version="1.0"?>
+
+<myroot>
+<Slides>
+<slideNode jpegURL="6742a964e0a9.jpg" thumbURL="6742a964e0a9t.jpg" jpegWidth="307" jpegHeight="205"></slideNode>
+<slideNode jpegURL="d17481288d01.jpg" thumbURL="d17481288d01t.jpg" jpegWidth="512" jpegHeight="308"></slideNode>
+<slideNode jpegURL="c945158d4e87.jpg" thumbURL="c945158d4e87t.jpg" jpegWidth="500" jpegHeight="308"></slideNode>
+<slideNode jpegURL="e67a6c7b2bb6.jpg" thumbURL="e67a6c7b2bb6t.jpg" jpegWidth="512" jpegHeight="300"></slideNode>
+</Slides>
+
+<setup>
+	<infoNode 
+		sliderposxshift="false"
+		of=" of "
+		sec="sec"
+		PhotoWMax="800"
+		PhotoHMax="600"
+		captionx="400" 
+		captiony="505" 
+		mymusictrack = ""  
+		fontcolor="0x000000"
+		sliderposx = "375"
+		sliderposy = "550"
+		slideimagein="false"
+		sliderdoc = "false"
+		slidervis="true" 
+		verticalthumbs ="false" 
+		slideinimagenudge="false" 
+		thumbxLoc= "0"  
+		photoYLoc="-1" 
+		photoXLoc="0" 
+		thumbyLoc= "570" 
+		popslide="true" 
+		thumbsvis= "false" 
+		thumbsize= "50" 
+		thumbgap= "5"  
+		thumbygap= "0" 
+		thumbblocklength="1" 
+		blur="0"  
+		AutoHideControls = "true"
+		reflection="false" 
+		Autoplay="true"
+		Sliderdefault="5"
+		>
+	</infoNode>
+</setup>
+</myroot>
+ 

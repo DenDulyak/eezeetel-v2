@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ include file="imports.jsp"%>
+<%@ include file="SessionCheck.jsp"%>
+
+<%
+    strCountryCode = application.getInitParameter("Country");
+	response.addHeader("Pragma", "no-cache");
+	response.addHeader("Expires", "-1");
+
+	long nTransactionID = 0;
+	Object objTransactionID = request.getSession().getAttribute("CurrentTransactionID");
+	if (objTransactionID != null)
+	{
+		String strTransactionID = objTransactionID.toString();
+		if (strTransactionID != null && strTransactionID.length() > 0)
+		nTransactionID = (Long.parseLong(strTransactionID));
+	}
+	
+	if (nTransactionID > 0)
+	{
+		ProcessTransaction processTransaction = new ProcessTransaction();
+		processTransaction.setCountry(strCountryCode);
+		boolean bProcessed = processTransaction.cancel(nTransactionID);
+		request.getSession().setAttribute("CurrentTransactionID", 0);
+		if (bProcessed)
+	response.sendRedirect(ksContext + "/Pages/ShowProducts.jsp");
+		else
+		{
+	response.getWriter().printf ("<font color=red>Transaction cancelation failed</font>");
+	response.getWriter().printf ("<a href=\"" + ksContext + "/Pages/ShowProducts.jsp\"> Show Products </a>");
+		}
+	}
+	else
+		response.sendRedirect(ksContext + "/Pages/ShowProducts.jsp");
+%>

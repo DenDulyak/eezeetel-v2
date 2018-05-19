@@ -1,0 +1,106 @@
+@CHARSET "ISO-8859-1";
+
+.topmenu
+{
+	background-color: #418EB1;
+	border-bottom: 5px solid #000000;
+}
+
+.topmenu_seperator
+{
+	border-left: 2px solid #FFFFFF;
+}
+
+.topmenu_main_item
+{
+	color:white;
+	font-size:250%;
+}
+
+.topmenu_medium
+{
+	color:white;
+	font-size:120%;
+}
+
+.topmenu_balance_normal
+{
+	color:white;
+	font-size:150%;
+}
+
+.topmenu_balance_less
+{
+	color:red;
+	font-size:150%;
+}
+
+.topmenu_normal_item
+{
+	color:white;
+	font-size:90%;
+}
+
+INPUT.supplier
+{
+background-color: #418EB1; 
+border-color: FFFFFF; 
+color: white; 
+font-family: arial, verdana, ms sans serif; 
+font-weight: bold; 
+font-size: 12pt; 
+width: 200px;
+height: 50px;
+cursor: pointer;
+clear: left;
+}
+INPUT.supplier_type
+{
+background-color: #418EB1; 
+border-color: FFFFFF; 
+color: white; 
+font-family: arial, verdana, ms sans serif; 
+font-weight: bold; 
+font-size: 10pt; 
+width: 150px;
+height: 60px;
+cursor: pointer;
+clear: left;
+}
+INPUT.product_type
+{
+width: 170px;
+height: 100px;
+}
+INPUT.product_type_till
+{
+width: 85px;
+height: 50px;
+}
+
+.Normal-C0
+{
+	font-family:"Arial", sans-serif; font-weight:700; font-size:16.0px; 
+	line-height:1.25em; color:#980009; 
+}
+.Normal-C1
+{
+	font-family:"Arial", sans-serif; font-weight:700; font-size:16.0px; 
+	line-height:1.25em; color:#2020EE; 
+}
+
+.Normal-C2
+{
+	font-family:"Arial", sans-serif; font-weight:700; font-size:16.0px; 
+	line-height:1.25em; color:#009809; 
+}
+.Normal-C3
+{
+	font-family:"Arial", sans-serif; font-weight:700; font-size:16.0px; 
+	line-height:1.25em; color:#0020EE; 
+}
+.SCROLLTEXT
+{
+	font-family:"Arial", sans-serif; font-weight:700; font-size:18.0px; 
+	line-height:1.25em; color:#1233B1; 
+}
